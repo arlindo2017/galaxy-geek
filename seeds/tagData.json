@@ -1,0 +1,57 @@
+[
+  {
+    "tag_name": "Samsung Galaxy S23",
+    "tag_summary": "The Samsung Galaxy S23 is a flagship smartphone released in 2023. It features a 6.2 inch Dynamic AMOLED display, a Qualcomm Snapdragon 899 processor, and a quad-lens camera system. The phone runs on Android 13 and is available in various colors and storage capacities.",
+    "tag_img": "/img/s23.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy S22",
+    "tag_summary": "The Samsung Galaxy S22 is a flagship smartphone released in 2022. It features a 6.1 inch Dynamic AMOLED display, a Qualcomm Snapdragon 898 processor, and a triple-lens camera system. The phone runs on Android 12 and is available in various colors and storage capacities.",
+    "tag_img": "/img/s22.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy S21",
+    "tag_summary": "The Samsung Galaxy S21 is a high-end Android smartphone with a 6.2-inch display, a triple-camera setup, and 5G connectivity. It was released in January 2021.",
+    "tag_img": "/img/s21.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy S21+",
+    "tag_summary": "The Samsung Galaxy S21+ is a larger version of the Galaxy S21, with a 6.7-inch display and a slightly more advanced camera setup. It was released in January 2021.",
+    "tag_img": "/img/s21+.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy S21 Ultra",
+    "tag_summary": "The Samsung Galaxy S21 Ultra is the top-of-the-line model in the S21 series, with a 6.8-inch display, a quad-camera setup, and support for the S Pen. It was released in January 2021.",
+    "tag_img": "/img/s21ultra.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy Note20",
+    "tag_summary": "The Samsung Galaxy Note20 is a high-end Android smartphone with a 6.7-inch display, an advanced S Pen stylus, and 5G connectivity. It was released in August 2020.",
+    "tag_img": "/img/note20.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy Note20 Ultra",
+    "tag_summary": "The Samsung Galaxy Note20 Ultra is a larger and more advanced version of the Galaxy Note20, with a 6.9-inch display, a more powerful processor, and a triple-camera setup. It was released in August 2020.",
+    "tag_img": "/img/note20ultra.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy S20",
+    "tag_summary": "The Samsung Galaxy S20 is a high-end Android smartphone with a 6.2-inch display, a triple-camera setup, and 5G connectivity. It was released in February 2020.",
+    "tag_img": "/img/s20.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy S20+",
+    "tag_summary": "The Samsung Galaxy S20+ is a larger version of the Galaxy S20, with a 6.7-inch display and a more advanced camera setup. It was released in February 2020.",
+    "tag_img": "/img/s20+.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy S20 Ultra",
+    "tag_summary": "The Samsung Galaxy S20 Ultra is the top-of-the-line model in the S20 series, with a 6.9-inch display, a quad-camera setup, and 5G connectivity. It was released in February 2020.",
+    "tag_img": "/img/s20ultra.jpeg"
+  },
+  {
+    "tag_name": "Samsung Galaxy Fold",
+    "tag_summary": "The Samsung Galaxy Fold is a unique Android smartphone with a foldable display that can be unfolded to reveal a tablet-like screen. It also features a 6.2-inch cover display, a triple-camera setup, and 5G connectivity. It was released in September 2019.",
+    "tag_img": "/img/fold.jpeg"
+  }
+]

@@ -1,0 +1,26 @@
+<section class="">
+    <h1 class="font-bold">Edit your Phone Review</h1>
+    <form id="update-post-form" class="mt-4">
+        <hr class="mb-8">
+        <label for="post_title" class="form-label">Enter new title of your review:</label>
+        <input type="text" id="post_title" name="post_title" value="{{post.post_title}}" class="form-control"/>
+        <div class="mt-4">
+            <label for="post_body" class="">Update your review:</label>
+            <textarea type="text" id="post_body" rows="12" name="post_body" class="form-control">{{post.post_body}}</textarea>
+        </div>
+        <div class="mt-4">
+            <label for="post_tag" class="">Select a phone:</label>
+            <select id="tag-select" name="tag_id" class="form-select">
+                <option value="{{post.tag_id}}">{{post.tag_name}}</option>
+                {{#each tags as |tag|}}
+                    <option value="{{tag.tag_id}}" {{#if (eq tag.tag_id post.tag_id)}}selected{{/if}}>{{tag.tag_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" id="buttonUpdatePost" class="btn btn-secondary">Update Review</button>
+        </div>
+    </form>
+</section>
+<script src="../js/updatePost.js"></script>

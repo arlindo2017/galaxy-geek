@@ -1,0 +1,28 @@
+<section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg">
+    <h1 class="font-bold text-3xl pb-2">Add your Phone Review</h1>
+    <p></p>
+    <form action="post" class="mt-4">
+        <hr class="mb-8">
+        <label for="post_title" class="form-label">Enter the title of your review:</label>
+        <input type="text" id="post_title" name="post_title" placeholder="Title" class="form-control"/>
+        <div class="mt-4">
+            <label for="post_body" class="">Add your review:</label>
+            <textarea type="text" id="post_body" rows="12" name="post_body" placeholder="Review " class="form-control"></textarea>
+        </div>
+        <div class="mt-4">
+            <label for="post_tag" class="">Select a phone:</label>
+            <select id="tag-select" name="tag_id" class="form-select">
+                <option value=""></option>
+                {{#each tags as |tag|}}
+                    <option value="{{tag.tag_id}}">{{tag.tag_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" id="buttonCreatePost" class="btn btn-secondary">Submit Review</button>
+        </div>
+    </form>
+</section>
+
+<script src="js/addPost.js"></script>

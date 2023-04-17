@@ -61,59 +61,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Questions Route
-router.get("/questions", async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["name", "user_img"],
-        },
-      ],
-      attributes: [
-        "post_id",
-        "post_title",
-        "post_body",
-        "date_created",
-        "view_count",
-        "user_id",
-        "tag_id",
-        [
-          sequelize.literal(
-            `(SELECT tag_name FROM tag WHERE tag_id = post.tag_id)`
-          ),
-          "tag_name",
-        ],
-        [
-          sequelize.literal(
-            `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
-          ),
-          "answer_count",
-        ],
-        "flag_count",
-      ],
-      order: [["view_count", "DESC"]],
-    });
-
-    const posts = postData.map((post) => post.get({ plain: true }));
-
-    // res.status(200).json(posts);
-    res.render("questions", {
-      posts,
-      logged_in: req.session.logged_in,
-      session_name: req.session.name,
-      session_user_id: req.session.user_id,
-    });
-  } catch (err) {
-    // console.log(err);
-    // res.status(500).json({ message: "Internal Server Error" });
-    res.render("error", {
-      logged_in: req.session.logged_in,
-    });
-  }
-});
-
 router.get("/posts/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -147,10 +94,6 @@ router.get("/posts/:id", async (req, res) => {
       user_id: req.session.user_id,
     });
   } catch (err) {
-    // console.log(err);
-    // res.status(500).json(err);
-    // console.log(err);
-    // res.status(500).json({ message: "Internal Server Error" });
     res.render("error", {
       logged_in: req.session.logged_in,
     });
@@ -164,28 +107,30 @@ router.get("/profile", withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       //req.session.user_id
       attributes: { exclude: ["password"] },
-      include: [{ model: Post,
-        attributes:[
-          "post_id",
-          "post_title",
-          "post_body",
-          "view_count",
-          "flag_count",
-          [
-            sequelize.literal(
-              `(SELECT tag_name FROM tag WHERE tag_id = posts.tag_id)`
-            ),
-            "tag_name",
+      include: [
+        {
+          model: Post,
+          attributes: [
+            "post_id",
+            "post_title",
+            "post_body",
+            "view_count",
+            "flag_count",
+            [
+              sequelize.literal(
+                `(SELECT tag_name FROM tag WHERE tag_id = posts.tag_id)`
+              ),
+              "tag_name",
+            ],
+            [
+              sequelize.literal(
+                `(SELECT COUNT(*) FROM answer WHERE answer.post_id = posts.post_id)`
+              ),
+              "answer_count",
+            ],
           ],
-          [
-            sequelize.literal(
-              `(SELECT COUNT(*) FROM answer WHERE answer.post_id = posts.post_id)`
-            ),
-            "answer_count",
-          ],
-        ], 
-      },
-    ],
+        },
+      ],
     });
 
     const user = userData.get({ plain: true });
@@ -220,7 +165,6 @@ router.get("/createPost", withAuth, async (req, res) => {
     res.render("create_post", {
       tags,
       logged_in: req.session.logged_in,
-
       name: req.session.name,
       user_id: req.session.user_id,
     });
@@ -240,6 +184,46 @@ router.get("/about", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+});
+
+// Route to find a ID to edit
+router.get("/edit/:id", withAuth, async (req, res) => {
+  try {
+    const tags = await Tag.findAll({ raw: true });
+    const postData = await Post.findByPk(req.params.id, {
+      attributes: [
+        "post_id",
+        "post_title",
+        "post_body",
+        "view_count",
+        "flag_count",
+        "tag_id",
+        [
+          sequelize.literal(
+            "(SELECT tag_name FROM tag WHERE tag_id = post.tag_id)"
+          ),
+          "tag_name",
+        ],
+      ],
+    });
+
+    if (postData) {
+      const post = postData.get({ plain: true });
+
+      res.render("edit-post", {
+        tags,
+        post,
+        logged_in: req.session.logged_in,
+        name: req.session.name,
+        user_id: req.session.user_id,
+      });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    console.log(err);
+    res.redirect("../login");
   }
 });
 

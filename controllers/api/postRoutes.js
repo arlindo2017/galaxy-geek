@@ -40,23 +40,31 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// API route to flag posts innappropriate
-router.post("/flag/:id", async (req, res) => {
+// Route to update a post
+router.put("/:id", withAuth, async (req, res) => {
   try {
-    const post = await Post.findByPk(req.params.id);
-    if (!post) {
-      res.status(404).json({ message: "Post not found" });
-      return;
+    const updatedPost = await Post.update(
+      {
+        post_title: req.body.post_title,
+        post_body: req.body.post_body,
+        tag_id: req.body.tag_id, // add tag_id field here
+      },
+      {
+        where: {
+          post_id: req.params.id,
+        },
+      }
+    );
+
+    if (updatedPost[0] === 0) {
+      return res.status(404).json({ message: "No post found with this ID" });
     }
 
-    // Increment the flag_count field by 1
-    post.flag_count += 1;
-    await post.save();
-
-    res.status(200).json({ message: "Post flagged successfully" });
+    const updatedPostData = await Post.findByPk(req.params.id);
+    res.status(200).json(updatedPostData);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json(err);
   }
 });
 

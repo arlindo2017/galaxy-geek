@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
         ],
       ],
       order: [["view_count", "DESC"]],
-      limit: 6,
+      // limit: 6,
     });
 
     const userCountData = await User.count();

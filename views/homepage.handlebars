@@ -1,7 +1,9 @@
 <section class="text-light">
+<img src="/img/galaxy-geek-header.jpg" alt="Logo" class="d-inline-block align-text-top w-100">
     <div class="row">
         <div class="col bg-dark p-4">
             <div class="card-body">
+                <br>
                 <h5 class="card-title">Welcome to Galaxy Geek</h5>
                 <p class="card-text">
                     We cover a wide range of Samsung Galaxy phones, from the latest models to the older ones, so you can
@@ -19,7 +21,7 @@
         </div>
     </div>
     <hr>
-    <h1>Samsung Galaxy Phone Reviews</h1>
+    <h2>Galaxy Phone Reviews</h2>
     {{#if logged_in}}
     <div style="display: flex; justify-content: flex-end;">
         <a href="/createPost" class="btn btn-primary">
@@ -48,13 +50,14 @@
     <!-- Loop over each object in the projects array -->
     {{#each posts as |post| }}
     {{!-- Display POST Title --}}
-    <div class="row text-light">
-        <div class="col-1 bg-dark p-4">
-            <img src="{{post.user.user_img}}" class="img-thumbnail p-0" alt="profile image" style="max-width: 75px;">
+    <div class="row text-light h-100%">
+        <div class="col-2 bg-dark p-4">
+            <img src="{{post.user.user_img}}" class="img-thumbnail mx-auto d-block" alt="profile image"
+                style="max-width: 75px;">
             <p class="text-center">{{post.user.name}}</p>
+            <p class="text-center">{{format_date post.date_created}}</p>
         </div>
-        <div class="col-11">
-            <p>{{format_date post.date_created}}</p>
+        <div class="col-10">
             <h5 class="">{{post.post_title}}</h5>
             <p class="">{{post.post_body}}</p>
         </div>
